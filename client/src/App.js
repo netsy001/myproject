@@ -15,13 +15,13 @@ if(!token) {
 
   return (
     <div className="App">
-      <Nav/>
-      <h1>Hi this is Application</h1>
       <BrowserRouter>
       <Switch>
+      <Nav/>
+      <h1>Hi this is Application</h1>
         <Route path="/dashboard"><Dashboard/></Route>
         <Route path="/preferences"><Preferences/></Route>
-        {/* <Route path="/login"><Login/></Route> */}
+        <Route path="/login"><Login/></Route>
       </Switch>
       </BrowserRouter>
     </div>

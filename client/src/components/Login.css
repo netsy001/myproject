@@ -1,5 +1,17 @@
-.login {
+.login label {
     text-align: center;
+    font-size: 1.25em;
+    padding-top: 1em;
     display:flex;
-    flex-direction: column;
+    flex-direction:inherit;
+    font-weight: bold;
+    font-style: normal;
+    font-family: 'Times New Roman', Times, serif;
+    border: rgb(171, 128, 240);
+    border-radius: 2mm;
+    background-color: lightgreen;
+    
+  }
+  h3 {
+    text-align: center;
   }

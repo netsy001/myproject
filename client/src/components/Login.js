@@ -1,20 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Login.css';
-export default function Login() {
+import propTypes from 'prop-types';
+
+
+export default function Login({ setToken }) {
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
     return (
-        <div className="login">
-            <h3>Please Log In</h3>
-           <form>
-               <label>
-                   <p>Username</p>
-                   <input type="text" />
-               </label>
-               <label>
-                   <p>Password</p>
-                   <input type="password" />
-               </label>
-               <button type="submit">Submit</button>
-           </form>
+        <div className="jumbotron jumbotron-fluid login">
+            <div className="container">
+                <h3>Please Log In</h3>
+                <form>
+                    <label> Username: <input type="text" onChange = {e=> setUserName(e.target.value)}/> </label>
+                    <br></br>
+                    <label> Password:  <input type="password" onChange ={e =>setPassword(e.target.value)}/> </label>
+                    <br></br>
+                    <button className="login" type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     )
+}
+
+Login.propTypes = {
+    setToken: propTypes.func.isRequired
 }

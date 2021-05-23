@@ -6,14 +6,14 @@ export default function Nav() {
         <div>
             <ReactBootStrap.Navbar bg="dark" variant="dark">
                 <ReactBootStrap.Nav className="mr-auto">
-                    <ReactBootStrap.Nav.Link href="#home"><strong>Telugu Association</strong></ReactBootStrap.Nav.Link>
-                    <ReactBootStrap.Nav.Link href="#Event"><strong>Create Event</strong></ReactBootStrap.Nav.Link>
-                    <ReactBootStrap.Nav.Link href="#Login"><strong>Login</strong></ReactBootStrap.Nav.Link>
-                    <ReactBootStrap.Nav.Link href="#Register"><strong>Register</strong></ReactBootStrap.Nav.Link>
+                    <ReactBootStrap.Nav.Link to="/Home"><strong>Telugu Association</strong></ReactBootStrap.Nav.Link>
+                    <ReactBootStrap.Nav.Link to="/event"><strong>Create Event</strong></ReactBootStrap.Nav.Link>
+                    <ReactBootStrap.Nav.Link to="/login"><strong>Logout</strong></ReactBootStrap.Nav.Link>
+                    <ReactBootStrap.Nav.Link to="/register"><strong>Register</strong></ReactBootStrap.Nav.Link>
                 </ReactBootStrap.Nav>
-                <ReactBootStrap.Form>
-                    <ReactBootStrap.FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <ReactBootStrap.Button className="margin" >Search</ReactBootStrap.Button>
+                <ReactBootStrap.Form className = "nav-form">
+                    <ReactBootStrap.FormControl type="text" placeholder="Search" className="input mr-sm-2" />
+                    <ReactBootStrap.Button>Search</ReactBootStrap.Button>
                 </ReactBootStrap.Form>
             </ReactBootStrap.Navbar>
         </div>

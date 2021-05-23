@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css';
 import propTypes from 'prop-types';
-
+import { GoogleLogin } from 'react-google-login';
 // var url = 'http://localhost:3001/login';
 async function loginUser(Credentials) {
     return fetch('http://localhost:3001/login', {
@@ -26,7 +26,9 @@ export default function Login({ setToken }) {
         });
         setToken(token);
     }
-
+    const responseGoogle = (response) => {
+        console.log(response);
+      }
     return (
         <div className="jumbotron jumbotron-fluid login">
             <div className="container">
@@ -38,6 +40,15 @@ export default function Login({ setToken }) {
                     <br></br>
                     <button className="login" type="submit">Submit</button>
                 </form>
+                <button className="Google-login"> 
+                <GoogleLogin
+                    clientId="563107909711-f2nnqsrvbhvpbk53bhvfpr7if9fek34m.apps.googleusercontent.com"
+                    buttonText="Login"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
+                </button>
             </div>
         </div>
     )

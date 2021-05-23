@@ -1,13 +1,13 @@
-.login label {
+label {
     text-align: center;
     font-size: 1.25em;
-    padding-top: 1em;
-    display:flex;
-    flex-direction:inherit;
+    margin-top: 20px;
+    /* display:flex; */
+    /* flex-direction:inherit; */
     font-weight: bold;
     font-style: normal;
     font-family: 'Times New Roman', Times, serif;
-    border: rgb(171, 128, 240);
+    /* border: rgb(171, 128, 240); */
     border-radius: 2mm;
     background-color: lightgreen;
     
@@ -23,4 +23,15 @@ margin-right: 5px;
   .input {
     margin-right: 5px;
 
+  }
+
+  .login {
+    margin-top: 20px;
+    
+  }
+
+  .Google-login {
+    margin-top: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2mm;
   }

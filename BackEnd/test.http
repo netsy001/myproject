@@ -1,0 +1,11 @@
+POST http://localhost:3001/app/register
+Content-Type: application/json
+
+{
+    "fullName":"Alekhya",
+    "username":"sweety",
+    "password":"password",
+    # "DOB":"05/08/1991",
+    "email":"email1@email.com"
+
+}

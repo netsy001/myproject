@@ -27,11 +27,13 @@ margin-right: 5px;
 
   .login {
     margin-top: 20px;
+    margin-bottom: 20px;
     
   }
 
   .Google-login {
-    margin-top: 10px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 2mm;
+  position:static;
+  display:block;
+  margin:auto;
+  
   }

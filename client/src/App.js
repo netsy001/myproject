@@ -9,7 +9,7 @@ import useToken from './components/UseToken';
 
 import Home from './components/Home';
 import Events from './components/Events';
-import Register from './components/Register';
+import Register from './components/Register/Register';
 // import useToken from './components/UseToken';
 
 function App() {

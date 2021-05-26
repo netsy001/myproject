@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import './Login.css';
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from "react-facebook-login";
+import logo from './logo.jpg';
+
 
 // var url = 'http://localhost:3001/login';
 async function loginUser(Credentials) {
@@ -40,7 +42,9 @@ const Login = props => {
     return (
         <div className="jumbotron jumbotron-fluid login">
             <div className="container">
-                <h3>Please Login</h3>
+                <img className="logo" src= {logo} />
+                <h1 className="events">Welcome to Telugu Association Events</h1>
+                <h3 className="events">Please Login</h3>
                 <form onSubmit={handleSubmit}>
                     <label> Username: <input type="text" onChange={e => setUserName(e.target.value)} /> </label>
                     <br></br>

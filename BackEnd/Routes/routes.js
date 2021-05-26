@@ -7,7 +7,7 @@ const RegisterSchemaTemplate = require('../models/RegisterModel');
 
 
 //setting path route to register
-router.post('/register', (req, res) => {
+router.post('/register', (req , res) => {
     //requesting to create new schema for new user that will be stored in or var
     const registeredUser = new RegisterSchemaTemplate({
         //getting the details the user entered

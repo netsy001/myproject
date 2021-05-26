@@ -1,32 +1,52 @@
 import React, { useState } from 'react'
-import * as ReactBootStrap from 'react-bootstrap';
-import Login from './Login/Login';
+// import * as ReactBootStrap from 'react-bootstrap';
+// import Login from './Login/Login';
+import { Link, useLocation } from "react-router-dom";
 
-const Nav = props => {
-    const [token, setToken] = useState(null);
-    const onLogout = e => {
-        e.preventDefault();
-        setToken(null)
-    }
-    // if (!token)
-    //     return (
-    //         <Login name="gopi" setToken={setToken} />
-    //     )
+
+function Nav() {
+    // const [token, setToken] = useState(null);
+    // const onLogout = e => {
+    //     e.preventDefault();
+    //     setToken(null)
+    // }
+    // const onRegister = e => {
+    //     e.preventDefault();
+    //     props.history.push("/Register");
+    // }
+    //     if (!token)
+    //         return (
+    //             <Login name="gopi" setToken={setToken} />
+    //         )
+    const location = useLocation();
 
     return (
         <div>
-            <ReactBootStrap.Navbar bg="dark" variant="dark">
-                <ReactBootStrap.Nav className="mr-auto">
-                    <ReactBootStrap.Nav.Link href="/home"><strong>Telugu Association</strong></ReactBootStrap.Nav.Link>
-                    <ReactBootStrap.Nav.Link href="/event"><strong>Create Event</strong></ReactBootStrap.Nav.Link>
-                    <ReactBootStrap.Nav.Link onClick= {onLogout}><strong>Logout</strong></ReactBootStrap.Nav.Link>
-                    <ReactBootStrap.Nav.Link href="/register"><strong>Register</strong></ReactBootStrap.Nav.Link>
-                </ReactBootStrap.Nav>
-                <ReactBootStrap.Form className="nav-form">
-                    <ReactBootStrap.FormControl type="text" placeholder="Search" className="input mr-sm-2" />
-                    <ReactBootStrap.Button>Search</ReactBootStrap.Button>
-                </ReactBootStrap.Form>
-            </ReactBootStrap.Navbar>
+            <ul className="nav nav-tabs Mr-auto" bg="dark" variant="dark" >
+                <li className="nav-item">
+                    <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}> Telugu Association </Link>
+                </li>
+                <li className="nav-item">
+                    <Link
+                        to="/dasboard"
+                        className={location.pathname === "/dasboard" ? "nav-link active" : "nav-link"}> Dashboard </Link>
+                </li>
+                <li className="nav-item">
+                    <Link
+                        to="/events"
+                        className={location.pathname === "/events" ? "nav-link active" : "nav-link"}> Create Events </Link>
+                </li>
+                <li className="nav-item">
+                    <Link
+                        to="/login"
+                        className={location.pathname === "/login" ? "nav-link active" : "nav-link"} > Login </Link>
+                </li>
+                <li className="nav-item">
+                    <Link
+                        to="/register"
+                        className={location.pathname === "/register" ? "nav-link active" : "nav-link"}> Register </Link>
+                </li>
+            </ul>
         </div>
     )
 }

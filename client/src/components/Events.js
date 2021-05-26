@@ -3,7 +3,7 @@
 import React from 'react';
 
 
-export default function Events() {
+function Events() {
     // const[state, setState] =useState();
 
     // useEfeect(()=>{
@@ -16,3 +16,4 @@ export default function Events() {
         </div>
     )
 }
+export default Events;

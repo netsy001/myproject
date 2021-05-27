@@ -1,0 +1,13 @@
+const mongoose = require('mongoose');
+
+const connectDb = async() => {
+    await mongoose.connect(process.env.MONGO_URI, {
+        useNEWUrlParser: true,
+        useCreateIndex: true,
+        useInifiedTopology:true,
+        useFindAndModify: true
+    });
+    console.log("MongoDb connected");
+}
+
+module.exports = connectDb;

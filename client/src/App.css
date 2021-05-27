@@ -42,8 +42,8 @@ form {
   margin-inline-start: auto;
 }
 
-/* .margin {
-  margin-left: 100%;
-} */
-
+.project-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
 

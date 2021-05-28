@@ -1,0 +1,13 @@
+.post-title {
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* text-align: justify; */
+    /* justify-content:start; */
+}
+
+.message {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bolder;
+
+}

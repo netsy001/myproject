@@ -39,12 +39,13 @@
 
 // export default App;
 
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
+import Clock from 'react-live-clock';
 import logo from "./components/images/logo.jpg";
-import { Navbar, Container, Row } from 'react-bootstrap';
+import { Navbar, Container, Nav,  Row } from 'react-bootstrap';
 //importing hooks useDispatch to dispatch an action
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 
 import { getPosts } from './actions/posts';
 
@@ -54,20 +55,21 @@ import Posts from './components/Posts/Posts';
 
 function App() {
 
-  //Defining the dispatch
-  const dispatch = useDispatch();
 
+  //App is the parent component and as we need to share the currentId between Form and Post with help of useState hook.
+  const [currentId, setCurrentId] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
 
 
 
   return (
     <>
       <Container fluid >
-        <Navbar position="static" expand="lg" bg="light">
+        <Navbar className="nav-style" position="static" expand="lg" bg="light">
           <Navbar.Brand href="#home">
             <img
               alt=""
@@ -77,16 +79,18 @@ function App() {
               className="d-inline-block align-top"
             />{' '}
           </Navbar.Brand>
-          <Navbar.Brand className="project-title" href="#home">Telugu Association</Navbar.Brand>
+          <Navbar.Brand className="project-title" href="#home"><span className="project-title">Telugu Association</span></Navbar.Brand>
+          <Nav.Link href="#Create Event">Create Event</Nav.Link>
+          <Clock className="clock-position" format={'HH:mm:ss'} ticking={true} timezone={'Australia/Adelaide'} />
         </Navbar>
       </Container>
 
       <Container>
-        <Row xs={12} sm={7} >
-          <Posts />
-        </Row>
         <Row xs={12} sm={4}>
-          <Form />
+          <Form currentId={currentId} setCurrentId={setCurrentId} />
+        </Row>
+        <Row xs={12} sm={7} >
+          <Posts setCurrentId={setCurrentId} />
         </Row>
       </Container>
 

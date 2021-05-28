@@ -1,4 +1,5 @@
 //access to model
+import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js';
 
 //controlloing the routes logic i.e the function for clear understanding
@@ -21,4 +22,30 @@ export const createPosts = async (req, res) => {
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
+}
+
+export const updatePost = async (req, res) => {
+    //object destruction id
+    const { id: _id } = req.params;
+    //we r requesting the data for updates and using as params in updatedPost.
+    const post = req.body;
+
+    //since Db is monngo validating the id with mongo
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, { ...post, _id }, { new: true });
+
+    res.json(updatedPost);
+}
+
+export const deletePost = async (req, res) => {
+    const { id } = req.params;
+    const post = req.body;
+
+    //since Db is monngo validating the id with mongo
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
+
+    const deletedPost = await PostMessage.findByIdAndRemove(id);
+
+    res.json({ message: 'Post deleted successfully' });
 }

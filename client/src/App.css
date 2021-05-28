@@ -45,5 +45,18 @@ form {
 .project-title {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bolder;
+  color: blue;
 }
 
+.nav-style {
+  border-radius: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.clock-position{
+  margin-left: auto;
+  font-display:initial;
+  display: block;
+  background-color: mediumaquamarine;
+  border-radius: 2mm;
+}

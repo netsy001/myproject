@@ -5,11 +5,15 @@ import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createPost, updatePost } from '../../actions/posts';
+// import { Redirect } from "react-router-dom";
+
+
+
 
 function Forms({ currentId, setCurrentId }) {
 
     const [postData, setPostData] = useState({
-        creator: '', title: '', message: '', selectedFile: ''
+        creator: '', title: '', message: '', selectedFile: '',  redirectToReferrer: false
     });
     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id = currentId) : null);
 
@@ -24,11 +28,15 @@ function Forms({ currentId, setCurrentId }) {
         e.preventDefault();
         if (currentId) {
             dispatch(updatePost(currentId, postData));
+            
             clear();
         } else {
             dispatch(createPost(postData));
+            
         }
         clear();
+        // redirectToReferrer: true;
+      
     }
 
     const clear = (e) => {
@@ -36,6 +44,10 @@ function Forms({ currentId, setCurrentId }) {
         setPostData({ creator: '', title: '', message: '', selectedFile:'' });
     }
 
+    // const redirectToReferrer = this.state.redirectToReferrer;
+    //     if (redirectToReferrer === true) {
+    //          <Redirect to="/" />
+    //     }
     return (
         <div>
             <Form onSubmit={handleSubmit}>

@@ -39,62 +39,30 @@
 
 // export default App;
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './App.css';
-import Clock from 'react-live-clock';
-import logo from "./components/images/logo.jpg";
-import { Navbar, Container, Nav,  Row } from 'react-bootstrap';
-//importing hooks useDispatch to dispatch an action
-import {  useDispatch } from 'react-redux';
-
-import { getPosts } from './actions/posts';
-
-import Form from './components/Form/Form';
-import Posts from './components/Posts/Posts';
-
+import { Container } from 'react-bootstrap';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Home from './components/Home/Home';
+import Navbar from './components/Navbar/Navbar';
+import Clock from './components/Clock/Clock';
+import Auth from './components/Auth/Auth.js';
+import Events from './components/Events';
 
 function App() {
 
-
-  //App is the parent component and as we need to share the currentId between Form and Post with help of useState hook.
-  const [currentId, setCurrentId] = useState(0);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
-
-
-
   return (
-    <>
+    <BrowserRouter>
       <Container fluid >
-        <Navbar className="nav-style" position="static" expand="lg" bg="light">
-          <Navbar.Brand href="#home">
-            <img
-              alt=""
-              src={logo}
-              width="50"
-              height="50"
-              className="d-inline-block align-top"
-            />{' '}
-          </Navbar.Brand>
-          <Navbar.Brand className="project-title" href="#home"><span className="project-title">Telugu Association</span></Navbar.Brand>
-          <Nav.Link href="#Create Event">Create Event</Nav.Link>
-          <Clock className="clock-position" format={'HH:mm:ss'} ticking={true} timezone={'Australia/Adelaide'} />
-        </Navbar>
+        <Navbar />
+        <Clock />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path='/events' exact component = {Events} />
+          <Route path="/auth" exact component={Auth} />
+        </Switch>
       </Container>
-
-      <Container>
-        <Row xs={12} sm={4}>
-          <Form currentId={currentId} setCurrentId={setCurrentId} />
-        </Row>
-        <Row xs={12} sm={7} >
-          <Posts setCurrentId={setCurrentId} />
-        </Row>
-      </Container>
-
-    </>
+    </BrowserRouter>
   );
 }
 

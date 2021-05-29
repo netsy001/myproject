@@ -7,4 +7,11 @@
     border-radius: 1em;
     font-family: Georgia, 'Times New Roman', Times, serif;
   }
+
+  .profile {
+  
+  margin-left: auto;
+    /* display: inline-block; */
+    display: inline-flex;
+  }
   

@@ -3,11 +3,16 @@ import { Container, Button } from 'react-bootstrap';
 import { GoogleLogin } from 'react-google-login';
 import GoogleButton from 'react-google-button';
 // import * as Icon from 'react-bootstrap-icons';
+import { useDispatch } from 'react-redux';
+import {useHistory } from 'react-router-dom';
+
 const Auth = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
 
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLasttName] = useState("");
     const [email, setEmail] = useState("");
@@ -27,11 +32,24 @@ const Auth = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
         handleShowPassword(false);
     }
+
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
     const googleSuccess = async (response) => {
         console.log(response);
+        //using optional chaining operator for not getting error
+        const result = response?.profileObj;
+        const token = response?.tokenId;
+
+        try {
+            dispatch({ type: 'AUTH', data: { result, token } });
+            history.push('/');
+            
+        } catch (error) {
+            console.log(error);
+        }
     };
+
     const googleFailure = (error) => {
         console.log(error);
         console.log('Unsuccessfull');

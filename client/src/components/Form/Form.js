@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import FileBase from 'react-file-base64';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import {useHistory } from 'react-router-dom';
 import { createPost, updatePost } from '../../actions/posts';
 // import { Redirect } from "react-router-dom";
 
@@ -19,6 +19,7 @@ function Forms({ currentId, setCurrentId }) {
 
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         if (post) setPostData(post);
@@ -29,10 +30,9 @@ function Forms({ currentId, setCurrentId }) {
         if (currentId) {
             dispatch(updatePost(currentId, postData));
             
-            clear();
         } else {
             dispatch(createPost(postData));
-            
+            history.push('/');
         }
         clear();
         // redirectToReferrer: true;

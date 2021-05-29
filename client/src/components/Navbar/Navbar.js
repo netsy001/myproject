@@ -8,24 +8,24 @@ import Auth from '../Auth/Auth';
 import Events from '../Events';
 import Home from '../Home/Home';
 import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 
 
 const Navbars = () => {
     // const location = useLocation();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
-
     console.log(user);
-
-    // useEffect(() => {
-    //     const token = user?.token;
-
-    //     setUser(JSON.parse(localStorage.getItem('profile')));
-    // }, []);
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
+
+    useEffect(() => {
+        const token = user?.token;
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
+
 
     const logout = () => {
         dispatch({type:'LOGOUT'});

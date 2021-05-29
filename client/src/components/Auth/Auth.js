@@ -4,7 +4,10 @@ import { GoogleLogin } from 'react-google-login';
 import GoogleButton from 'react-google-button';
 // import * as Icon from 'react-bootstrap-icons';
 import { useDispatch } from 'react-redux';
-import {useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+
+const initialState = { firstName: '', lastName: "", email: "", password: "", confirmPassword: "" };
 
 const Auth = () => {
 
@@ -13,20 +16,18 @@ const Auth = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLasttName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [formData, setFormData] = useState(initialState);
 
 
-    const handleSubmit = () => {
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
     }
 
-    // const handleChange = () => {
-
-    // }
+    const handleChange = (e) => {
+setFormData({...formData, [e.target.name]: e.target.value});
+    }
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
@@ -44,7 +45,7 @@ const Auth = () => {
         try {
             dispatch({ type: 'AUTH', data: { result, token } });
             history.push('/');
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -63,29 +64,29 @@ const Auth = () => {
                         <>
                             <div className="form-group">
                                 <label>First name</label>
-                                <input name="firstName" type="text" className="form-control" onChange={e => setFirstName(e.target.value)} placeholder="First name" required />
+                                <input name="firstName" type="text" className="form-control" onChange= {handleChange} placeholder="First name" required />
                             </div>
 
                             <div className="form-group">
                                 <label>Last name</label>
-                                <input name="lastName" type="text" className="form-control" onChange={e => setLasttName(e.target.value)} placeholder="Last name" required />
+                                <input name="lastName" type="text" className="form-control" onChange= {handleChange} placeholder="Last name" required />
                             </div>
                         </>
                     )}
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input name="email" type="email" className="form-control" onChange={e => setEmail(e.target.value)} placeholder="Enter email" required />
+                    <input name="email" type="email" className="form-control" onChange= {handleChange} placeholder="Enter email" required />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input name="password" type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} className="form-control" onChange={e => setPassword(e.target.value)} placeholder="Enter password" required />
+                    <input name="password" type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} className="form-control" onChange= {handleChange} placeholder="Enter password" required />
                 </div>
 
                 {isSignup && <div className="form-group">
                     <label>Repeat Password</label>
-                    <input name="confirmPassword" type="Password" className="form-control" onChange={e => setConfirmPassword(e.target.value)} placeholder="Repeat password" required />
+                    <input name="confirmPassword" type="Password" className="form-control" onChange= {handleChange} placeholder="Repeat password" required />
                 </div>}
                 <br></br>
                 <button type="submit" className="btn btn-primary btn-block">{isSignup ? 'Sign Up' : 'Sign In'}</button>

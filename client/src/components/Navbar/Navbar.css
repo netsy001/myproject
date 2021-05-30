@@ -6,12 +6,14 @@
   .nav-style {
     border-radius: 1em;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+
   }
 
-  .profile {
-  
-  margin-left: auto;
-    /* display: inline-block; */
-    display: inline-flex;
+  .right-buttons {
+    margin-left: 50%;
   }
+
+
+
   

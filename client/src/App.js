@@ -11,7 +11,7 @@ import Auth from './components/Auth/Auth.js';
 import Events from './components/Events';
 
 function App() {
-
+ 
   return (
     <BrowserRouter>
       <Container fluid >

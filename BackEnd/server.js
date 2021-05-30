@@ -1,6 +1,5 @@
 
 import express from 'express';
-// import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -16,10 +15,9 @@ app.use(cors());
 app.use('/posts' , postRoutes);
 app.use('/user', userRoutes);
 
-// const MONGO_URI= 'mongodb+srv://nett0508:Netsy001.@cluster0.zvhfr.mongodb.net/register?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 3001;
 
-mongoose.connect(process.env. MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNEWUrlParser: true,
   useCreateIndex: true,
   useInifiedTopology:true,

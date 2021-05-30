@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { GoogleLogin } from 'react-google-login';
 import GoogleButton from 'react-google-button';
 // import * as Icon from 'react-bootstrap-icons';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import {signin, signup } from '../../actions/auth';
 
 const initialState = { firstName: '', lastName: "", email: "", password: "", confirmPassword: "" };
 
-const Auth = () => {
 
-    const [showPassword, setShowPassword] = useState(false);
-    const [isSignup, setIsSignup] = useState(false);
+
+
+const Auth = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [isSignup, setIsSignup] = useState(false);
     const [formData, setFormData] = useState(initialState);
 
 
@@ -23,18 +25,26 @@ const Auth = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-    }
+
+        if(isSignup) {
+            dispatch(signup(formData, history));
+        } else {
+            dispatch (signin(formData, history));
+        }
+    };
 
     const handleChange = (e) => {
-setFormData({...formData, [e.target.name]: e.target.value});
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
     const switchMode = () => {
+        setFormData(initialState);
         setIsSignup((prevIsSignup) => !prevIsSignup);
         setShowPassword(false);
     }
 
-    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
+    const [showPassword, setShowPassword] = useState(false);
+    const handleShowPassword = () => setShowPassword(showPassword);
 
     const googleSuccess = async (response) => {
         console.log(response);
@@ -53,40 +63,39 @@ setFormData({...formData, [e.target.name]: e.target.value});
 
     const googleFailure = (error) => {
         console.log(error);
-        console.log('Unsuccessfull');
+        alert('Unsuccessfull');
     };
 
     return (
         <Container>
             <form onSubmit={handleSubmit}>
-                {
-                    isSignup && (
+                { isSignup && (
                         <>
                             <div className="form-group">
                                 <label>First name</label>
-                                <input name="firstName" type="text" className="form-control" onChange= {handleChange} placeholder="First name" required />
+                                <input name="firstName" type="text" className="form-control" onChange={handleChange} placeholder="First name" required />
                             </div>
 
                             <div className="form-group">
                                 <label>Last name</label>
-                                <input name="lastName" type="text" className="form-control" onChange= {handleChange} placeholder="Last name" required />
+                                <input name="lastName" type="text" className="form-control" onChange={handleChange} placeholder="Last name" required />
                             </div>
                         </>
                     )}
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input name="email" type="email" className="form-control" onChange= {handleChange} placeholder="Enter email" required />
+                    <input name="email" type="email" className="form-control" onChange={handleChange} placeholder="Enter email" required />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input name="password" type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} className="form-control" onChange= {handleChange} placeholder="Enter password" required />
+                    <input name="password" type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} className="form-control" onChange={handleChange} placeholder="Enter password" required />
                 </div>
 
                 {isSignup && <div className="form-group">
                     <label>Repeat Password</label>
-                    <input name="confirmPassword" type="Password" className="form-control" onChange= {handleChange} placeholder="Repeat password" required />
+                    <input name="confirmPassword" type="Password" className="form-control" onChange={handleChange} placeholder="Repeat password" required />
                 </div>}
                 <br></br>
                 <button type="submit" className="btn btn-primary btn-block">{isSignup ? 'Sign Up' : 'Sign In'}</button>

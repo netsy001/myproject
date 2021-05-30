@@ -4,21 +4,16 @@ import mongoose from 'mongoose';
 const userSchema = mongoose.Schema({
   name: {
     type: String,
-    trim: true,
-    required: [true, "FullNmae is Required"]
+    required: [true, "Name is Required"]
   },
 
   password: {
     type: String,
-    trim: true,
-    required: [true, "Password is Required"],
-    validate: [({ length }) => length >= 6, "Password should be longer."]
+    required: [true, "Password is Required"]
   },
 
   email: {
     type: String,
-    unique: true,
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
     required: [true, "Email required"]
   },
   id: { type: String },
@@ -32,4 +27,4 @@ const userSchema = mongoose.Schema({
 
 
 //exports take two arguments one the name of our mongotable and second the name of our schema
-export default mongoose.model('User', userSchema)
+export default mongoose.model('User', userSchema);

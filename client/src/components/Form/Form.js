@@ -12,36 +12,48 @@ import { createPost, updatePost } from '../../actions/posts';
 
 function Forms({ currentId, setCurrentId }) {
 
+    // redirectToReferrer: false
+
     const [postData, setPostData] = useState({
-        creator: '', title: '', message: '', selectedFile: '',  redirectToReferrer: false
+        title: '', message: '', selectedFile: ''
     });
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id = currentId) : null);
+    const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id = currentId) : null));
 
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(() => {
         if (post) setPostData(post);
     }, [post]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (currentId) {
-            dispatch(updatePost(currentId, postData));
+        if (currentId === 0) {
+            dispatch(createPost({...postData, name:user?.result?.name}));
+            clear();
             
         } else {
-            dispatch(createPost(postData));
+            dispatch(updatePost(currentId, {...postData, name:user?.result?.name}));
+            clear();
             history.push('/');
         }
-        clear();
+        // clear();
         // redirectToReferrer: true;
       
-    }
+    };
+    if (!user?.result?.name) {
+        return (
+          <h5 className="please-sign">
+              Please Sign In to create your own Event.
+          </h5>
+        );
+      }
 
     const clear = (e) => {
-        setCurrentId(null);
-        setPostData({ creator: '', title: '', message: '', selectedFile:'' });
+        setCurrentId(0);
+        setPostData({  title: '', message: '', selectedFile:'' });
     }
 
     // const redirectToReferrer = this.state.redirectToReferrer;
@@ -52,10 +64,6 @@ function Forms({ currentId, setCurrentId }) {
         <div>
             <Form onSubmit={handleSubmit}>
                 <Form.Label><strong>{currentId ? 'Editing' : 'Creating'} an Event </strong> </Form.Label>
-                <Form.Group controlId="formGroupCreator">
-                    <Form.Label>Creator</Form.Label>
-                    <Form.Control name="creator" type="text" placeholder="Creator" value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
-                </Form.Group>
                 <Form.Group controlId="formGroupTitle">
                     <Form.Label>Title</Form.Label>
                     <Form.Control name="title" type="text" placeholder="title" value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />

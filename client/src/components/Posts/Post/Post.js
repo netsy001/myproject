@@ -5,11 +5,15 @@ import { useDispatch } from 'react-redux';
 import { deletePost } from '../../../actions/posts';
 
 
-function Post({ post, setCurrentId }) {
+function Post({ post, setCurrentId, moveToEvent }) {
 
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
 
+    const handleUpdate = () => {
+        setCurrentId(post._id)
+        moveToEvent();
+    }
     return (
         <div className="event-display">
             <Row xs="3">
@@ -26,7 +30,7 @@ function Post({ post, setCurrentId }) {
                     <Card.Text><p className="message" >{post.message}</p></Card.Text>
 
                     {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-                        <Button className="update-button" variant="primary" onClick={() => setCurrentId(post._id)} >Update Event</Button>
+                        <Button className="update-button" variant="primary" onClick={handleUpdate} >Update Event</Button>
                     )} &nbsp;
 
                     {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (

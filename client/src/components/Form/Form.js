@@ -30,9 +30,11 @@ function Forms({ currentId, setCurrentId }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(currentId);
         if (currentId === 0) {
             dispatch(createPost({...postData, name:user?.result?.name}));
             clear();
+            history.push('/');
             
         } else {
             dispatch(updatePost(currentId, {...postData, name:user?.result?.name}));

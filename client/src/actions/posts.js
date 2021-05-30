@@ -5,7 +5,7 @@ import * as api from '../api';
 export const getPosts = () => async (dispatch) => {
 
     try {
-
+        console.log('hello');
         const { data } = await api.fetchPosts();
         //action is an object which takes in two parameters type, payload
         dispatch({ type: 'FETCH_ALL', payload: data });

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Post from './Post/Post';
 
-const Posts = ({ setCurrentId }) => {
+const Posts = ({ setCurrentId , moveToEvent }) => {
 
     const posts = useSelector((state) => state.posts);
     return (
@@ -16,7 +16,7 @@ const Posts = ({ setCurrentId }) => {
                         posts.map((post) => (
                             // <Container fluid>
                             <div key={post._id}>
-                                <Post post={post} setCurrentId={setCurrentId} />
+                                <Post post={post} setCurrentId={setCurrentId} moveToEvent={moveToEvent} />
                             </div>
                             // </Container>
                         ))

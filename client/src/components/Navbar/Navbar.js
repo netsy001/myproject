@@ -9,7 +9,7 @@ import Events from '../Events';
 import Home from '../Home/Home';
 import { useDispatch } from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
-
+import decode from 'jwt-decode';
 
 const Navbars = () => {
     // const location = useLocation();
@@ -20,18 +20,23 @@ const Navbars = () => {
     const history = useHistory();
     const location = useLocation();
 
-    useEffect(() => {
-        const token = user?.token;
-
-        setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [location]);
-
-
     const logout = () => {
         dispatch({type:'LOGOUT'});
         history.push('/');
         setUser(null);
     };
+
+    useEffect(() => {
+        const token = user?.token;
+        if(token) {
+            const decodedToken = decode(token);
+            if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
+
+
+    
 
     return (
         <Navbar className="nav-style" position="static" expand="lg" bg="light">

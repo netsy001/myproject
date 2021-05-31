@@ -3,7 +3,7 @@ const mongoose = require ( 'mongoose');
 const PostMessage = require ( '../models/postMessage.js');
 
 //controlloing the routes logic i.e the function for clear understanding
-export const getPosts = async (req, res) => {
+ const getPosts = async (req, res) => {
     try {
         // retriving all posts in DB... its async function as it takes time for finding msgs.
         const postMessages = await PostMessage.find();
@@ -13,7 +13,7 @@ export const getPosts = async (req, res) => {
     }
 }
 
-export const createPost = async (req, res) => {
+ const createPost = async (req, res) => {
     const post = req.body;
     const newPost = new PostMessage({ ...post, creator: req.userId });
     try {
@@ -24,7 +24,7 @@ export const createPost = async (req, res) => {
     }
 }
 
-export const updatePost = async (req, res) => {
+ const updatePost = async (req, res) => {
     //object destruction id
     const { id: _id } = req.params;
     //we r requesting the data for updates and using as params in updatedPost.
@@ -38,7 +38,7 @@ export const updatePost = async (req, res) => {
     res.json(updatedPost);
 }
 
-export const deletePost = async (req, res) => {
+ const deletePost = async (req, res) => {
     const { id } = req.params;
     const post = req.body;
 
@@ -49,3 +49,5 @@ export const deletePost = async (req, res) => {
 
     res.json({ message: 'Post deleted successfully' });
 }
+
+module.exports = { getPosts, createPost ,updatePost, deletePost , }

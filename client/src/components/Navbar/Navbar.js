@@ -50,7 +50,7 @@ const Navbars = () => {
                         className="d-inline-block align-top"
                     />{' '}
                 </Navbar.Brand>
-                <Button type="primary" href='/' onClick={Home}>Telugu Association</Button> &nbsp; &nbsp;
+                <Button type="primary" href='/'  onClick={Home}>Telugu Association</Button> &nbsp; &nbsp;
             <Button type="primary" href='/events' onClick={Events}>Create Event</Button> &nbsp;
             </div>
             <div className="right-buttons">
@@ -63,7 +63,8 @@ const Navbars = () => {
 
                         </Form>
                     ) : (
-                        <Button type="primary" href='/auth' onClick={Auth}>Sign In</Button>
+                        <Link to="/auth">
+                        <Button type="primary" >Sign In</Button> </Link>
                     )}
                 </Nav>
             </div>

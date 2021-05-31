@@ -1,6 +1,6 @@
 //access to model
 const mongoose = require ( 'mongoose');
-const {PostMessage} = require ( '../models/postMessage.js');
+const PostMessage = require ( '../models/postMessage.js');
 console.log({PostMessage});
 //controlloing the routes logic i.e the function for clear understanding
  const getPosts = async (req, res) => {

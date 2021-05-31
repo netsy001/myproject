@@ -1,6 +1,6 @@
 //access to model
-import mongoose from 'mongoose';
-import PostMessage from '../models/postMessage.js';
+const mongoose = require ( 'mongoose');
+const PostMessage = require ( '../models/postMessage.js');
 
 //controlloing the routes logic i.e the function for clear understanding
 export const getPosts = async (req, res) => {

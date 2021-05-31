@@ -96,7 +96,7 @@ const Auth = () => {
                 {isSignup && <div className="form-group">
                     <label>Repeat Password</label>
                     <input name="confirmPassword" type="Password" className="form-control" onChange={handleChange} placeholder="Repeat password" required />
-                </div>}
+                </div>} 
                 <br></br>
                 <button type="submit" className="btn btn-primary btn-block">{isSignup ? 'Sign Up' : 'Sign In'}</button>
 

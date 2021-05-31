@@ -17,13 +17,14 @@ const signin = async (req, res) => {
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, process.env.SECRET, { expiresIn: "1h" });
         res.status(200).json({ result: existingUser, token });
     } catch (err) {
+        console.log(err);
         res.status(500).json({ message: "Something went wrong" });
     }
 };
 
 const signup = async (req, res) => {
     const { email, password, confirmPassword, firstName, lastName } = req.body;
-
+console.log(req.body);
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) return res.status(400).json({ message: "User already exists" });
@@ -33,6 +34,7 @@ const signup = async (req, res) => {
         const token = jwt.sign({ email: result.email, id: result._id }, process.env.SECRET, { expiresIn: "1h" });
         res.status(200).json({ result, token });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Something went wrong" });
     }
 };

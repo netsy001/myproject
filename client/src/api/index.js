@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:3001' });
+const API = axios.create({baseUrl: "https://murmuring-mesa-57444.herokuapp.com"});
 
 
 API.interceptors.request.use((req) => {

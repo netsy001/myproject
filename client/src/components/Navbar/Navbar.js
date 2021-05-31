@@ -50,8 +50,9 @@ const Navbars = () => {
                         className="d-inline-block align-top"
                     />{' '}
                 </Navbar.Brand>
-                <Button type="primary" href='/'  onClick={Home}>Telugu Association</Button> &nbsp; &nbsp;
-            <Button type="primary" href='/events' onClick={Events}>Create Event</Button> &nbsp;
+                <Link to ="/" > <Button type="primary">Telugu Association</Button> </Link> &nbsp; &nbsp;
+                <Link to ="/events" >
+            <Button type="primary" >Create Event</Button> </Link> &nbsp;
             </div>
             <div className="right-buttons">
                 <Nav>

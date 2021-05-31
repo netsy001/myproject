@@ -1,16 +1,16 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require('dotenv');
-const User = require('../models/User.js');
+const {User} = require('../models/User.js');
 dotenv.config();
 
-
+console.log({User});
 
 const signin = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const existingUser = await UserModal.findOne({ email });
+        const existingUser = await User.findOne({ email });
         if (!existingUser) return res.status(404).json({ message: "User doesn't exist" });
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
         if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });

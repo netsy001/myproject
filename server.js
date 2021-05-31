@@ -3,7 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import path from 'path';
+// import path from 'path';
 import postRoutes from './BackEnd/routes/posts.js';
 import userRoutes from './BackEnd/routes/users.js';
 

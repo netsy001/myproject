@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mern Demo",
   "main": "server.js",
-  "type": "module",
+  // "type": "module",
   "scripts": {
     "start": "node server.js",
     "install": "cd client && npm install",

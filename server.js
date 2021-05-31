@@ -1,11 +1,11 @@
 
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv';
+const express = require  ('express');
+const mongoose = require  ('mongoose');
+const cors = require  ('cors');
+const dotenv = require  ('dotenv');
 const path = require('path');
-import postRoutes from './BackEnd/routes/posts.js';
-import userRoutes from './BackEnd/routes/users.js';
+const postRoutes = require  ('./BackEnd/routes/posts.js');
+const userRoutes = require  ('./BackEnd/routes/users.js');
 
 const app = express();
 dotenv.config();

@@ -8,7 +8,7 @@ import Auth from '../Auth/Auth';
 import Events from '../Events';
 import Home from '../Home/Home';
 import { useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory,  Link, useLocation } from 'react-router-dom';
 import decode from 'jwt-decode';
 import '../Navbar/Navbar.css';
 const Navbars = () => {
